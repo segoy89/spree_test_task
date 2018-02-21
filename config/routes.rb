@@ -9,4 +9,9 @@ Rails.application.routes.draw do
   # the default of "spree".
   mount Spree::Core::Engine, at: '/'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  Spree::Core::Engine.routes.draw do
+    namespace :admin do
+      post 'products/import_csv', as: :import_products_csv, to: 'products#import_csv_file'
+    end
+  end
 end
